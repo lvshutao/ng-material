@@ -1,27 +1,73 @@
-# NgMaterial
+## 知识点
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.5.5.
+* [共享模块](src/app/shared/shared.module.ts) 和 [核心模块](src/app/core/core.module.ts) 的使用特点
+* flex 布局 (css), 居中
 
-## Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+## material
 
-## Code scaffolding
+需要用到哪个 UI 组件，引入它即可，根据其类别，可以分为
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+### Navigation
 
-## Build
+* Menu
+* Sidenav
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
+用途：侧边栏导航，同时可以作为容器；
+侧滑的三种模式: over, push, side
+一般和 `<mat-sidenav-container>` 联合使用
 
-## Running unit tests
+```
+<mat-sidenav-container>
+  <mat-sidenav mode="over">Start</mat-sidenav>
+  <mat-sidenav position="end">End</mat-sidenav>
+  <section>Main</section>
+</mat-sidenav-container>
+```
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+* Toolbar
 
-## Running end-to-end tests
+用于：一般用于头部、标题栏；通过 `<mat-toolbar-row>` 实现支持多行；
+默认内部布局是基于 flex 的
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+### Form Controls
 
-## Further help
+* Autocomplete
+* Checkbox
+* Datepicker
+* Form field
+* Input
+* Radio button
+* Select
+* Slider
+* Slide toggle
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+### Layout 
+
+* List
+* Grid list
+* Card
+* Stepper
+* Tabs
+* Expansion Panel
+
+### Buttons & Indicators
+
+* Button
+* Button toggle
+* Chips
+* Icon
+* Progress spinner
+* Progress bar
+
+### Popups & Modals
+
+* Dialog
+* Tooltip
+* Snackbar
+
+### Data Table
+
+* Table
+* Sort header
+* Paginator

@@ -1,0 +1,13 @@
+http://localhost:3000/users
+
+###
+
+POST http://localhost:3000/users
+Content-Type: application/json
+
+{
+    "email":"zhaoyi@10.com",
+    "password":"123456"
+}
+
+###
