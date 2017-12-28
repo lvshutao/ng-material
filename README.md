@@ -57,6 +57,14 @@
 * Button toggle
 * Chips
 * Icon
+
+1. [内置](https://material.io/icons/) 的图标；
+引入 [materialicons](src/styles.css) 中的字体。[参考 Api](https://material.angular.io/components/icon/api)
+包含；比如容易实现，通常与 MatButtonModule 搭配，以实现[透明化的按钮](src/app/core/header/header.component.html)
+2. SVG 资源，如src/assets/cart.svg. 参考文件: src/app/utils/svg.util.ts,src/app/core/core.module.ts
+3. [FontAwesome](https://fortawesome.github.io/Font-Awesome/examples/)，以及 
+
+
 * Progress spinner
 * Progress bar
 
