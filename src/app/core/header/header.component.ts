@@ -1,4 +1,5 @@
-import {Component, OnInit, Output, EventEmitter} from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -8,8 +9,9 @@ import {Component, OnInit, Output, EventEmitter} from '@angular/core';
 export class HeaderComponent implements OnInit {
 
   @Output() toggle = new EventEmitter<void>();
+  @Output() changeTheme = new EventEmitter<boolean>();
 
-  constructor() {
+  constructor(private router: Router) {
   }
 
   ngOnInit() {
@@ -19,4 +21,12 @@ export class HeaderComponent implements OnInit {
     this.toggle.emit();
   }
 
+  goHome() {
+    this.router.navigateByUrl('/');
+  }
+
+  // 更换主题
+  toggleTheme(isChecked) {
+    this.changeTheme.emit(isChecked);
+  }
 }

@@ -1,0 +1,17 @@
+@import '~@angular/material/theming';
+@include mat-core();
+// 白天
+$my-day-primary: mat-palette($mat-indigo);
+$my-day-accent: mat-palette($mat-pink, A200, A100, A400);
+$my-day-warn: mat-palette($mat-red);
+$my-day-theme: mat-light-theme( $my-day-primary, $my-day-accent, $my-day-warn);
+@include angular-material-theme($my-day-theme);
+// 黑夜主题
+$my-dark-primary: mat-palette($mat-blue-grey);
+$my-dark-accent: mat-palette($mat-amber, A200, A100, A400);
+$my-dark-warn: mat-palette($mat-deep-orange);
+$my-dark-theme: mat-light-theme( $my-dark-primary, $my-dark-accent, $my-dark-warn);
+// 只能加载一个主题
+.my-dark-theme {
+  @include angular-material-theme($my-dark-theme);
+}

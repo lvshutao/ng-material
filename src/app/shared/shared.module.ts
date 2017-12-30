@@ -1,8 +1,26 @@
-import {NgModule} from '@angular/core';
-import {CommonModule} from '@angular/common';
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {
+  MatIconModule,
+  MatToolbarModule,
+  MatButtonModule,
+  MatCardModule,
+  MatInputModule,
+  MatListModule
+} from '@angular/material';
 
 const MODULES = [
-  CommonModule
+  CommonModule,
+  HttpClientModule,
+  MatToolbarModule,
+  MatIconModule,
+  MatButtonModule,
+  MatCardModule,
+  MatInputModule,
+  MatListModule,
+  FormsModule, ReactiveFormsModule
 ];
 
 @NgModule({

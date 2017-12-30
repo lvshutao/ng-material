@@ -3,5 +3,7 @@
     <mat-icon class="mat-18">menu</mat-icon>
   </button>
 
-  <mat-icon class="mat-18" svgIcon="cart"></mat-icon>
+  <span (click)="goHome()">Material Snippets</span>
+  <span class="fill-remaining-space"></span>
+  <mat-slide-toggle (change)="toggleTheme($event.checked)">黑夜模式</mat-slide-toggle>
 </mat-toolbar>

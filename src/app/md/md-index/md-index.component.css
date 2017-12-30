@@ -1,0 +1,15 @@
+.child-float div {
+  float: left;
+}
+.with-border {
+  border: 2px solid red;
+  margin: 1em;
+  padding: 1em;
+}
+
+.palette-color-wrapper span {
+  width: 100px;
+  display: inline-block;
+  margin: 5px;padding:5px;
+  text-align: center;
+}

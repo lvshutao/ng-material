@@ -1,4 +1,12 @@
-@import "~@angular/material/prebuilt-themes/deeppurple-amber.css";
+/* 
+ 默认官方的主题 
+ @import "~@angular/material/prebuilt-themes/deeppurple-amber.css"; 
+
+ 使用自定义的主题，只需要将文件添加到 .angular-cli.json 中的 styels 中即可；
+ 当然如果你默认使用的是 scss 处理样式，也可以直接在当前文件使用
+ @import "theme/theme.scss"; 
+*/
+
 
 /* https://fonts.googleapis.com/icon?family=Material+Icons */
 
@@ -25,9 +33,14 @@
   -webkit-font-smoothing: antialiased;
 }
 
+
 /* fonts.googleapis.com end */
 
-html, body, app-root, mat-sidenav-container, .site {
+html,
+body,
+app-root,
+mat-sidenav-container,
+.site {
   margin: 0;
   padding: 0;
   width: 100%;
@@ -41,6 +54,7 @@ html, body, app-root, mat-sidenav-container, .site {
 
 main {
   flex: 1;
+  padding: 1em 2em;
 }
 
 .fill-remaining-space {
@@ -48,3 +62,14 @@ main {
   /* @angular/material 中的很多控件使用了 flex 布局 */
   flex: 1 1 auto;
 }
+
+mat-sidenav {
+  width: 300px;
+}
+
+.full-width {
+  width: 100%;
+}
+
+
+

@@ -1,15 +1,15 @@
-<mat-sidenav-container>
+<mat-sidenav-container [class.my-dark-theme]="isDarkTheme">
 
-  <mat-sidenav #sidenav mode="side">
+  <mat-sidenav #sidenav>
     <app-sidebar></app-sidebar>
   </mat-sidenav>
 
   <div class="site">
     <header>
-      <app-header (toggle)="sidenav.toggle()"></app-header>
+      <app-header (toggle)="sidenav.toggle()" (changeTheme)="changeTheme($event)"></app-header>
     </header>
     <main>
-      Main
+      <router-outlet></router-outlet>
     </main>
     <footer>
       <app-footer></app-footer>
@@ -17,4 +17,3 @@
   </div>
 
 </mat-sidenav-container>
-

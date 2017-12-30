@@ -1,15 +1,19 @@
-import {NgModule, SkipSelf, Optional} from '@angular/core';
-import {CommonModule} from '@angular/common';
-import {HeaderComponent} from './header/header.component';
-import {FooterComponent} from './footer/footer.component';
-import {SidebarComponent} from './sidebar/sidebar.component';
-import {MatIconModule, MatToolbarModule, MatButtonModule} from '@angular/material';
+import { NgModule, SkipSelf, Optional } from '@angular/core';
 
-import {MatIconRegistry} from '@angular/material';
-import {DomSanitizer} from '@angular/platform-browser';
-import {HttpClientModule} from '@angular/common/http';
-import {svgResources} from '../utils/svg.util';
+// RouterModule because SidebarComponent use routerLink tag.
+import { RouterModule } from '@angular/router';
+// material UI
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+import { HeaderComponent } from './header/header.component';
+import { FooterComponent } from './footer/footer.component';
+import { SidebarComponent } from './sidebar/sidebar.component';
+
+import { MatIconRegistry, MatListModule, MatSlideToggleModule } from '@angular/material';
+import { DomSanitizer } from '@angular/platform-browser';
+import { svgResources } from '../utils/svg.util';
+
+import { SharedModule } from '../shared/shared.module';
 
 const COMPONENTS = [
   HeaderComponent, FooterComponent, SidebarComponent
@@ -17,11 +21,12 @@ const COMPONENTS = [
 
 @NgModule({
   imports: [
-    CommonModule,
-    MatToolbarModule,
-    MatIconModule,
-    MatButtonModule,
-    HttpClientModule
+    SharedModule,
+    BrowserAnimationsModule,
+    RouterModule,
+    // 在 header,footer,sidebar 中使用到的某些模块
+    MatListModule,
+    MatSlideToggleModule
   ],
   declarations: [...COMPONENTS],
   exports: [...COMPONENTS]
@@ -30,8 +35,8 @@ export class CoreModule {
   // @Optional 模块是可选的
   // @SkipSelf 只在父类中查找依赖
   // 只会在应用启动时加载一次
-  constructor(@Optional() @SkipSelf() parent: CoreModule,
-              ir: MatIconRegistry, ds: DomSanitizer) {
+  constructor( @Optional() @SkipSelf() parent: CoreModule,
+    ir: MatIconRegistry, ds: DomSanitizer) {
     if (parent) {
       throw new Error('Core 模块只能加载一次，不能再次加载');
     }

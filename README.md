@@ -36,7 +36,7 @@
 * Checkbox
 * Datepicker
 * Form field
-* Input
+
 * Radio button
 * Select
 * Slider

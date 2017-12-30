@@ -1,0 +1,134 @@
+<h4>List</h4>
+<div>
+  用途：一般用于列表，包含多行列表、带图标列表、带头像列表、密集列表和多段列表。
+  <p>
+    外部指令有 &lt;mat-list&gt; 和 &lt;mat-nav-list&gt;， 内部的指令为 &lt;mat-list-item&gt;</p>
+</div>
+
+<div>&lt;mat-list&gt; 只提供了 Material 的样式，本身并不提供行为</div>
+
+<mat-list>
+  <mat-list-item> Peper</mat-list-item>
+  <mat-list-item> Salt</mat-list-item>
+  <mat-list-item> Paprika</mat-list-item>
+</mat-list>
+
+<ol>
+  <li>
+    <h5>Navigation lists</h5>
+    <div>
+      &lt;mat-nav-list&gt; 主要用于导航列表，简单的项可以使用 `mat-list-item` 属性。如 &lt;a mat-list-item href="..." *ngFor="let link of links"&gt;...&lt;/a&gt;
+    </div>
+    <div style="width:200px;">
+      <mat-nav-list>
+        <a mat-list-item href="javascript:;"> Item1 </a>
+      </mat-nav-list>
+    </div>
+    <div>对于复杂的子项，需要将其它的内容包裹在 &lt;mat-list-item&gt; 内部，比如添加 mat-list-item > a + button > mat-icon</div>
+    <div style="width:200px;">
+      <mat-nav-list>
+        <mat-list-item>
+          <a matLine href="javascript:;">Item2</a>
+          <button mat-icon-button>
+            <mat-icon>info</mat-icon>
+          </button>
+        </mat-list-item>
+      </mat-nav-list>
+    </div>
+  </li>
+
+  <li>
+    <h5>Selection lists</h5>
+    <div>
+      <p>&lt;mat-selection-list&gt; 选择列表主要用于交互，它使用到的子项是 &lt;mat-list-option&gt;</p>
+      <div>
+        <mat-selection-list #shoes>
+          <mat-list-option *ngFor="let shoes of typesOfShoes">{{ shoes }}
+          </mat-list-option>
+        </mat-selection-list>
+        <p>选择: {{ shoes.selectedOptions.selected.length }}</p>
+      </div>
+      <p>注意：此时的 mat-list-option 不能够包含任何交互的控件，比如 button, a</p>
+    </div>
+  </li>
+
+  <li>
+    <h5>多行列表展示</h5>
+    <div>注意：列表显示的行都需要添加 matLine 属性.比如一个 p[matLine] 就是一个项。 </div>
+    <div>
+      <p>两行展示</p>
+      <div>mat-list-item > h3[matLine] + p[matLine]</div>
+      <mat-list>
+        <mat-list-item *ngFor="let message of messages">
+          <h3 matLine> {{message.from}} </h3>
+          <p matLine>
+            <span> {{message.subject}} </span>
+            <span class="demo-2"> -- {{message.content}} </span>
+          </p>
+        </mat-list-item>
+      </mat-list>
+
+      <p>三行展示</p>
+      <div>mat-list-item > h3[matLine] + p[matLine] + p[matLine]</div>
+      <mat-list>
+        <mat-list-item *ngFor="let message of messages">
+          <h3 matLine> {{message.from}} </h3>
+          <p matLine> {{message.subject}} </p>
+          <p matLine class="demo-2"> {{message.content}} </p>
+        </mat-list-item>
+      </mat-list>
+    </div>
+  </li>
+
+  <p>图标: matListIcon</p>
+  <div>mat-list-item > mat-icon[matListIcon] + h3[matLine] + p[matLine]</div>
+  <mat-list>
+    <mat-list-item *ngFor="let message of messages">
+      <mat-icon matListIcon>folder</mat-icon>
+      <h3 matLine> {{message.from}} </h3>
+      <p matLine>
+        <span> {{message.subject}} </span>
+        <span class="demo-2"> -- {{message.content}} </span>
+      </p>
+    </mat-list-item>
+  </mat-list>
+
+  <p>头像: matListAvatar</p>
+  <div>mat-list-item > img[matListAvatar] + h3[matLine] + p[matLine]</div>
+  <mat-list>
+    <mat-list-item *ngFor="let message of messages">
+      <img matListAvatar src="assets/avatar.png" alt="avatar.png">
+      <h3 matLine> {{message.from}} </h3>
+      <p matLine>
+        <span> {{message.subject}} </span>
+        <span class="demo-2"> -- {{message.content}} </span>
+      </p>
+    </mat-list-item>
+  </mat-list>
+
+  <p>清单 Dense</p>
+  <div>mat-list[dense] > mat-list-item * n</div>
+  <mat-list dense>
+    <mat-list-item> Pepper </mat-list-item>
+    <mat-list-item> Salt </mat-list-item>
+    <mat-list-item> Paprika </mat-list-item>
+  </mat-list>
+
+  <p>分组列表 matSubheader 和 mat-divider</p>
+  <div>mat-list > h3[matSubheader]{{'{'}}标题{{'}'}} + mat-list-item</div>
+  <mat-list>
+    <h3 matSubheader>Folders</h3>
+    <mat-list-item>
+      <mat-icon matListIcon>folder</mat-icon>
+      <h4 matLine>folder.name</h4>
+      <p matLine class="demo-2"> folder.updated </p>
+    </mat-list-item>
+    <mat-divider></mat-divider>
+    <h3 matSubheader>Notes</h3>
+    <mat-list-item>
+      <mat-icon matListIcon>note</mat-icon>
+      <h4 matLine>note.name</h4>
+      <p matLine class="demo-2"> note.updated </p>
+    </mat-list-item>
+  </mat-list>
+</ol>

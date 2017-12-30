@@ -1,0 +1,30 @@
+<h3><a href="https://material.angular.io/components/input/overview">Input</a></h3>
+
+<div class="help-block">
+  <p>
+    通常与 &lt;mat-form-field&gt;, &lt;mat-error&gt;, &lt;mat-hint&gt; 搭配使用。
+  </p>
+  <p>
+    支持的类型有: date, datetime-local, email, month, number, password, search, tel, text, time, url, week
+  </p>
+</div>
+
+<h4>最基本的用法</h4>
+<form>
+  <mat-form-field>
+    <input matInput placeholder="text with nothing."/>
+  </mat-form-field>
+</form>
+
+<div class="help-block">
+  所有能够在 &lt;input&gt; 和 &lt;textarea&gt; 的 attribute，也都可以在 &lt;mat-form-field&gt;
+  内部的组件（包括 Angular 指令如 ngModel, formControl ）中使用，
+  <div>
+    下面的 types 都能够被用于 <span class="mat-warn">matInput</span> 中: date, datetime-local,
+    email, month, number, password, search, tel, text, time, url, week
+  </div>
+</div>
+
+<app-input-login></app-input-login>
+
+<router-outlet></router-outlet>

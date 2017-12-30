@@ -1,0 +1,138 @@
+<h3>
+  <a href="https://material.angular.io/guide/getting-started" target="_blank">Get Start</a>
+</h3>
+
+<ol>
+  <li>
+    <h4>安装 Angular Material 和 Angular CDK</h4>
+    <p class="help-block">npm install --save @angular/material @angular/cdk</p>
+  </li>
+  <li>
+    <h4>Animations</h4>
+    <div class="help-block">一些 Material 维护依赖 Angular animations 模块，如果需要动画效果，那么需要安装它。
+      <pre>npm install --save @angular/animations</pre> 注意 animation 并不被所有的浏览器支持，想要支持老旧的浏览器，还需要引入 polyfill.
+      <pre>import {{ '{' }} BrowserAnimationsModule {{ '}' }} from '@angular/platform-browser/animations'
+@NgModule({{ '{' }}
+      ... imports:[BrowserAnimationsModule], ...
+{{ '}' }})</pre> 如果你想使用自己的动画库，则将上面的模块替换为 NoopAnimationsModule
+    </div>
+  </li>
+
+  <li>
+    <h4>使用组件</h4>
+    <div class="help-block">
+      <div>需要使用哪个组件，导入它即可。
+        <b>注意：</b>组件的导入必须在 `BrowserModule` 之后</div>
+      <pre>import {{ '{' }}MatButtonModule{{ '}' }} from '@angular/material'
+@NgModule({{ '{' }}
+      ... imports:[MatButtonModule], ...
+{{ '}' }})</pre>
+    </div>
+  </li>
+
+  <li>
+    <h4>主题</h4>
+    <div>必须为应用使用一个主题；如果是通过 Angular CL 创建的项目，则在 `styles.css` 文件中添加以下代码来添加官方的主题
+      <pre>@import "~@angular/material/prebuilt-themes/indigo-pink.css";</pre> 否则，直接在 index.html 中使用 &lt;link&gt; 标签。
+    </div>
+    <div>
+      如果想使用 <b>自定义的主题</b>，可以参考官方给出的<a href="https://material.angular.io/guide/theming">示例</a>
+      <ol>
+        <li>src/theme/theme.scss + .angular-cli.json 主题的设置和入口配置</li>
+        <li>app/core/header 中的开头, app.component 中 class 的切换</li>
+        <li>app.component.css 中正文内容的设置</li>
+      </ol>
+    </div>
+  </li>
+
+  <li>
+    <h4>手势支持</h4>
+    <div>为了获得一些组件手势的支持，还需要安装 HammerJS</div>
+    <pre>npm install --save hammerjs</pre>
+    <div>安装完成之后，在应用的入口文件 `main.ts` 中添加 `import 'hammer.js'`</div>
+  </li>
+
+  <li>
+    <h4>(可选) Material Icons</h4>
+    <div>如果想使用官方的 `mat-icon` 组件，那么需要引用官方的字体库，在 index.html 中 导入 &lt;link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"&gt;
+    </div>
+    <div>由于网络原因，你可以将其下载下来，然后在 styles.css 中引用它们，具体查看 src/styles.css 文件</div>
+  </li>
+
+  <li>
+    <h4>(附录) SystemJS 配置</h4>
+    <div>如果你的项目是使用 SystemJS 进行模块化管理， 那么你还需要将 @angular/material 和 @angular/cdk 添加到 SystemJS 的配置文件中
+    </div>
+  </li>
+</ol>
+
+<h3>
+  <a href="https://material.angular.io/guides" target="_blank">指导</a>
+</h3>
+
+<ol>
+  <li>
+    <h4>主题</h4>
+    <div>
+      主题是 Angular Material 组件的
+      <a href="https://material.io/guidelines/style/color.html" target="_blank">颜色</a> 的集合。 通常一个主题包含了一级调色板，它们代表了不同的含义
+      <ul>
+        <li>primary: 屏幕及大部分的组件</li>
+        <li>accent: 交互的按钮，响应的组件</li>
+        <li>warn: 错误的状态</li>
+        <li>foreground: 文字 或 图标的颜色</li>
+        <li>background: 组件的背景颜色</li>
+      </ul>
+      Angular Material 内置了以下的主题, `deeppurple-amber.css`,`indigo-pink.css`, `pink-bluegrey.css`, `purple-green.css` ，你可以在 `styles.css`
+      文件中通过以下方式使用它
+      <pre>@import "~@angular/material/prebuilt-themes/indigo-pink.css";</pre>
+      <b>注意:</b> 如果应用的内容没有放在 `mat-sidenav-container` 组件中，那么就需要为包裹内容的控件(比如 body ) 添加一个 `mat-app-background` 的样式类，以便正常能正确地使用主题背景
+    </div>
+    <b>其它</b> 自定义主题、多主题、延迟加载、
+    <a href="https://material.angular.io/guide/theming-your-components" target="_blank">更换 Component 主题</a>
+    等参阅文档。
+  </li>
+
+  <li>
+    <h4>
+      <a href="https://material.angular.io/guide/typography" target="_blank">排版</a>
+    </h4>
+    <div>
+      排版遵循
+      <a href="https://material.io/guidelines/style/typography.html" target="_blank">Material.io</a> 文档。 包含了以下多种级别，每个级别都定义了 `font-size`,`line-height`,`font-weight`
+      <ul>
+        <li>`display-4`,`display-3`,`display-2`,`display-1` 用在页面的顶部，比如 &lt;header&gt;</li>
+        <li>`headline`=&lt;h1&gt;, `title`=&lt;h2&gt;, `subheading-2`=&lt;h3&gt;, `subheading-1`=&lt;h4&gt;
+        </li>
+        <li>`body-1` 基本的正文字体，`body-2` 更粗的正文字体</li>
+        <li>`caption` 更小的正文字体，或者 错误提示信息</li>
+        <li>`button` 按钮</li>
+        <li>`input` 输入框</li>
+      </ul>
+    </div>
+  </li>
+
+  <li>
+    <h4>CDK data-table</h4>
+    <p>可定制化的表格，具体查看 `mat-table` 组件</p>
+  </li>
+
+  <li>
+    <h4>
+      <a href="https://material.angular.io/guide/creating-a-custom-form-field-control" target="_blank">自定义 input 组件
+      </a>
+    </h4>
+  </li>
+
+  <li>
+    <h4>
+      <a href="https://material.angular.io/guide/elevation" target="_blank">elevation</a> 立体化</h4>
+    <div>
+      <div style="padding: 16px;margin: 16px;" [class.mat-elevation-z2]="!isActive" [class.mat-elevation-z8]="isActive">
+        Example
+      </div>
+      <button mat-button (click)="isActive = !isActive">Toggle Elevation</button>
+    </div>
+  </li>
+</ol>

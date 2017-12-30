@@ -1,0 +1,16 @@
+form.login-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+form.login-form mat-card {
+  width: 20em;
+  margin: 5px;
+}
+
+.text-right {
+    margin: 10px;
+    text-align: end;
+}
