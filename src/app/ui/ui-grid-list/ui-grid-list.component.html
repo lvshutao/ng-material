@@ -1,0 +1,74 @@
+<h3>
+  <a href="https://material.angular.io/components/grid-list/overview">GridList</a>
+</h3>
+
+<div>
+  <div>用于相似的数据展示，尤其是图片、类似相册等；</div>
+  <div>指令为 mat-grid-list, 其它属性
+    <ul>
+      <li>cols(必须)：用来表示多少列，之后会根据数据量自动算出需要多少行</li>
+      <li>
+        <h4>行高 rowHeight</h4>
+        <ul>
+          <li>固定值：默认单位为 px, 支持 em, rem</li>
+          <li>ratio：单元格的宽高比，只支持比例的样式(如 4:3)，不支持小数点</li>
+          <li>fit: 根据行数自动计算，此时你必须指定 grid-list 的高度</li>
+        </ul>
+        <div>如果不设置，那么默认采用 1:1 的比例显示</div>
+      </li>
+      <li>gutterSize 默认为 1px</li>
+    </ul>
+  </div>
+  <div>
+    <h4>其它指令</h4>
+    <ul>
+      <li>mat-grid-tile 单元格，具有 colspan, rowspan 属性，用来设置跨行跨列</li>
+      <li>mat-grid-tile-header</li>
+      <li>mat-grid-tile-footer</li>
+    </ul>
+  </div>
+</div>
+
+<div class="grid-list">
+  <mat-grid-list cols="2" rowHeight="2:1">
+    <mat-grid-tile-header>mat-grid-tile-header</mat-grid-tile-header>
+    <mat-grid-tile>1</mat-grid-tile>
+    <mat-grid-tile>2</mat-grid-tile>
+    <mat-grid-tile>3</mat-grid-tile>
+    <mat-grid-tile>4</mat-grid-tile>
+    <mat-grid-tile-footer>mat-grid-tile-footer</mat-grid-tile-footer>
+  </mat-grid-list>
+</div>
+
+<form class="register-form" novalidate>
+  <mat-card>
+    <mat-card-header></mat-card-header>
+    <mat-card-content>
+      <mat-form-field class="full-width">
+        <input type="text" matInput placeholder="帐号" required>
+      </mat-form-field>
+      <mat-form-field class="full-width">
+        <input type="password" matInput placeholder="您的密码" required>
+      </mat-form-field>
+      <mat-form-field class="full-width">
+        <input type="password" matInput placeholder="重复输入您的密码" required>
+      </mat-form-field>
+      <!-- 头像列表开始 -->
+      <mat-grid-list cols="6">
+        <mat-grid-tile *ngFor="let item of items">
+          <mat-icon class="avatar" [svgIcon]="item"></mat-icon>
+        </mat-grid-tile>
+      </mat-grid-list>
+      <!-- 头像列表结束  -->
+      <button type="button" mat-raised-button>注册</button>
+    </mat-card-content>
+    <mat-card-actions align="start" class="text-right">
+      <p>已有帐户?
+        <a href="javascript:;">登录</a>
+      </p>
+      <p>忘记密码?
+        <a href="javascript:;">找回密码</a>
+      </p>
+    </mat-card-actions>
+  </mat-card>
+</form>

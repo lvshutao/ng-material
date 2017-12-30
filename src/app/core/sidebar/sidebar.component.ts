@@ -16,6 +16,8 @@ export class SidebarComponent implements OnInit {
         { title: 'Card', link: 'ui-card' },
         { title: 'Button', link: 'ui-button' },
         { title: 'List', link: 'ui-list' },
+        { title: 'GridList', link: 'ui-grid-list' },
+        { title: 'Dialog', link: 'ui-dialog' },
       ]
     }, {
       subheader: 'Material Design', items: [

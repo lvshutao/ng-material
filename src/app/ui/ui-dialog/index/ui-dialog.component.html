@@ -1,0 +1,39 @@
+<h4>dialog</h4>
+
+<div>
+  `MatDialog`
+  <b>服务</b>用于打开对话框.
+  <div>`open` 方法来打开机一个对话框，并返回一个 `MatDialogRef` 实例。你可以通过这个实例来关闭对话框，或者在对话框关闭时接收到一个通知。</div>
+  <div>注意：你必须将模态框注册到模型类中，如 <span style="color: red;">@NgModule.entryComponents:[UiDialogConfirmComponent]</span> 中，否则会一直报错</div>
+  <pre>
+// 打开一个对话框
+let dialogRef = dialog.open(UserProfileComponent,{{'{'}}
+    height: '400px',
+    width: '600px'
+{{'}'}})
+// 订阅关闭通知
+dialogRef.afterClosed().subscribe(result => {{'{'}}
+  console.log('Dialog result:',result);
+{{'}'}})
+// 关闭
+dialogRef.close('Pizzal');
+
+// 传递数据
+const dialogRef = dialog.open(YourDialog, {{'{'}}data:'your data'{{'}'}});
+// 接收数据
+constructor(@Inject(MD_DIALOG_DATA) public data:any)
+  </pre>
+</div>
+<app-ui-dialog-demo></app-ui-dialog-demo>
+
+<div>
+  <div>1. 将 MatDialogRef 注入到你的模态框中; 2. 使用 @Inject(MAT_DIALOG_DATA) 来接收传递到模态框的数据；
+    比如 src/app/ui/ui-dialog/confirm/ui-dialog-confirm.component.ts</div>
+  <div>模态框中使用 mat-dialog-title, mat-dialog-content, mat-dialog-actions, mat-dialog-close 来构建模态内容</div>
+  <div>当模态框打开时，它会自动聚集到第一个控件上，但你可以通过设置 tabindex="-1" 来取消它</div>
+</div>
+<div>
+  <h4>常见错误</h4>
+  <div>No component factory found for ProjectNewComponent. Did you add it to @NgModule.entryComponents?</div>
+  <div>没有将组件设置到模块的 entryComponents 中</div>
+</div>

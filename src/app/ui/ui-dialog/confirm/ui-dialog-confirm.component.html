@@ -1,0 +1,10 @@
+<h2 mat-dialog-title>Hi</h2>
+<div mat-dialog-content>
+  <mat-form-field>
+    <input matInput type="text" placeholder="请输入你的名称" #name/>
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-button mat-dialog-close>不,谢谢</button>
+  <button mat-button [mat-dialog-close]="name.value">好的</button>
+</div>

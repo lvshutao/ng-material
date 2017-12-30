@@ -8,7 +8,9 @@ import {
   MatButtonModule,
   MatCardModule,
   MatInputModule,
-  MatListModule
+  MatListModule,
+  MatGridListModule,
+  MatDialogModule
 } from '@angular/material';
 
 const MODULES = [
@@ -20,6 +22,8 @@ const MODULES = [
   MatCardModule,
   MatInputModule,
   MatListModule,
+  MatGridListModule,
+  MatDialogModule,
   FormsModule, ReactiveFormsModule
 ];
 

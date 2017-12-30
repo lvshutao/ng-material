@@ -17,4 +17,7 @@ export const svgResources = (ir: MatIconRegistry, ds: DomSanitizer) => {
   for (let i = 1; i <= 31; i++) {
     ir.addSvgIcon(`day${i}`, ds.bypassSecurityTrustResourceUrl(`${dayDir}day${i}.svg`));
   }
+  // 图像，导入的是 svg 集合文件
+  const avatarDir = `${imgDir}avatar/`;
+  ir.addSvgIconSetInNamespace('avatars', ds.bypassSecurityTrustResourceUrl(`${avatarDir}avatars.svg`))
 };
