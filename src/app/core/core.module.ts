@@ -1,19 +1,19 @@
 import { NgModule, SkipSelf, Optional } from '@angular/core';
-
-// RouterModule because SidebarComponent use routerLink tag.
-import { RouterModule } from '@angular/router';
-// material UI
+import { HttpClientModule } from '@angular/common/http';
+// material UI animation
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 
-import { MatIconRegistry, MatListModule, MatSlideToggleModule } from '@angular/material';
+import { MatIconRegistry } from '@angular/material';
 import { DomSanitizer } from '@angular/platform-browser';
 import { svgResources } from '../utils/svg.util';
 
 import { SharedModule } from '../shared/shared.module';
+
+import 'rxjs/add/operator/take';
 
 const COMPONENTS = [
   HeaderComponent, FooterComponent, SidebarComponent
@@ -21,12 +21,9 @@ const COMPONENTS = [
 
 @NgModule({
   imports: [
+    HttpClientModule,
     SharedModule,
-    BrowserAnimationsModule,
-    RouterModule,
-    // 在 header,footer,sidebar 中使用到的某些模块
-    MatListModule,
-    MatSlideToggleModule
+    BrowserAnimationsModule
   ],
   declarations: [...COMPONENTS],
   exports: [...COMPONENTS]

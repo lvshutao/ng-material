@@ -1,6 +1,5 @@
-import {Component, OnInit, Inject} from '@angular/core';
-import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
-import {OverlayContainer} from '@angular/cdk/overlay';
+import { Component, OnInit, Inject } from '@angular/core';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 
 @Component({
   selector: 'app-project-new',
@@ -9,19 +8,17 @@ import {OverlayContainer} from '@angular/cdk/overlay';
 })
 export class ProjectNewComponent implements OnInit {
 
+  title: string = '';
+
   constructor(// 需要接收数据
     @Inject(MAT_DIALOG_DATA) private data,
     // 需要往回传送数据
-    private diaRef: MatDialogRef<ProjectNewComponent>,
-    // 如果需要设置主题
-    private oc: OverlayContainer) {
-    if (Math.random() > 0.5) {
-      oc.getContainerElement().classList.add('my-dark-theme');
-    }
+    private diaRef: MatDialogRef<ProjectNewComponent>) {
+
   }
 
   ngOnInit() {
-    console.log('接收数据:', this.data);
+    this.title = this.data.title;
   }
 
   enter() {

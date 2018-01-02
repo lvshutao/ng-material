@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
+import {OverlayContainer} from '@angular/cdk/overlay';
 
 @Component({
   selector: 'app-root',
@@ -6,11 +7,19 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  
+
   isDarkTheme = false;
 
+  constructor(private oc: OverlayContainer) {
+
+  }
+
   changeTheme(isChecked: boolean) {
-    console.log(isChecked);
     this.isDarkTheme = isChecked;
+    if (isChecked) {
+      this.oc.getContainerElement().classList.add('my-dark-theme');
+    } else {
+      this.oc.getContainerElement().classList.remove('my-dark-theme');
+    }
   }
 }

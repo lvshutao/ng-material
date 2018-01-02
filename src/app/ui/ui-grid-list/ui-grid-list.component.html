@@ -40,31 +40,36 @@
   </mat-grid-list>
 </div>
 
-<form class="register-form" novalidate>
+<form class="register-form" novalidate [formGroup]="form" (ngSubmit)="onSubmit(form,$event)">
   <mat-card>
     <mat-card-header></mat-card-header>
     <mat-card-content>
       <mat-form-field class="full-width">
-        <input type="text" matInput placeholder="帐号" required>
+        <input type="email" matInput placeholder="帐号" 
+        formControlName="email">
       </mat-form-field>
       <mat-form-field class="full-width">
-        <input type="password" matInput placeholder="您的密码" required>
+        <input type="password" matInput placeholder="您的密码" 
+        formControlName="password">
       </mat-form-field>
       <mat-form-field class="full-width">
-        <input type="password" matInput placeholder="重复输入您的密码" required>
+        <input type="password" matInput placeholder="重复输入您的密码" 
+        formControlName="repeat"
+        >
       </mat-form-field>
       <!-- 头像列表开始 -->
-      <mat-grid-list cols="6">
-        <mat-grid-tile *ngFor="let item of items">
-          <mat-icon class="avatar" [svgIcon]="item"></mat-icon>
-        </mat-grid-tile>
-      </mat-grid-list>
+      <app-image-list-select 
+      [items]='items' 
+      [useSvgIcon]="true"
+      [cols]="6"
+      formControlName="avatar"
+      ></app-image-list-select>
       <!-- 头像列表结束  -->
       <button type="button" mat-raised-button>注册</button>
     </mat-card-content>
     <mat-card-actions align="start" class="text-right">
       <p>已有帐户?
-        <a href="javascript:;">登录</a>
+        <a routerLink="/ui-input">登录</a>
       </p>
       <p>忘记密码?
         <a href="javascript:;">找回密码</a>

@@ -1,7 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
+
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
+
 import {
   MatIconModule,
   MatToolbarModule,
@@ -10,12 +12,20 @@ import {
   MatInputModule,
   MatListModule,
   MatGridListModule,
-  MatDialogModule
+  MatDialogModule,
+  MatMenuModule, MatCheckboxModule, MatTooltipModule, MatDatepickerModule, MatNativeDateModule, MAT_DATE_LOCALE, MAT_DATE_FORMATS,
+  MatRadioModule, MatSelectModule, MatSlideToggleModule
 } from '@angular/material';
+import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
+import { DirectiveModule } from '../directive/directive.module';
+import { ImageListSelectComponent } from './image-list-select/image-list-select.component';
 
 const MODULES = [
   CommonModule,
-  HttpClientModule,
+  RouterModule,
+  FormsModule,
+  ReactiveFormsModule,
+  // mat module
   MatToolbarModule,
   MatIconModule,
   MatButtonModule,
@@ -24,14 +34,31 @@ const MODULES = [
   MatListModule,
   MatGridListModule,
   MatDialogModule,
-  FormsModule, ReactiveFormsModule
+  MatMenuModule,
+  MatCheckboxModule,
+  MatTooltipModule,
+  MatSlideToggleModule,
+  // ------ datepicker module -----
+  MatDatepickerModule,
+  MatNativeDateModule,
+  // ------------------------
+  MatRadioModule,
+  MatSelectModule,
+  DirectiveModule
 ];
 
 @NgModule({
   imports: [...MODULES],
-  // 共享模块最主要的功能
-  exports: [...MODULES],
-  declarations: []
+  // shared module's core function: import then export
+  exports: [ImageListSelectComponent, ...MODULES],
+  declarations: [ConfirmDialogComponent, ImageListSelectComponent],
+  providers: [
+    // datepicker date display locale
+    { provide: MAT_DATE_LOCALE, useValue: 'zh-CN' }
+  ],
+  entryComponents: [
+    ConfirmDialogComponent
+  ]
 })
 export class SharedModule {
 }

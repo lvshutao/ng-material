@@ -1,5 +1,6 @@
 /* 黑夜主题的背景 */
 
 mat-sidenav-container.my-dark-theme {
-  background: black;
+  background: #424242;
+  color: white;
 }

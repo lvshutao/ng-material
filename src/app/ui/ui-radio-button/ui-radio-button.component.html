@@ -1,0 +1,24 @@
+<h4>Radio button</h4>
+
+<div>提供了类似原生 &lt;input type="radio"&gt; 的功能</div>
+
+<mat-radio-group>
+  <mat-radio-button value="1">选项 1</mat-radio-button>
+  <mat-radio-button value="2">选项 2</mat-radio-button>
+</mat-radio-group>
+
+<div>所有的 radio-buttons 都使用了相同的 name 属性, 一次只能选择一个</div>
+
+<h5>Radio-button Label</h5>
+<div>
+  label 使用的是 &lt;mat-radio-button&gt; 组件，你可以通过 `labelPosition`="before|after" 来控制标签显示的位置。
+  如果不希望 label 靠着按钮，那可以使用 `arial-label` 指定一个特殊的 label.
+</div>
+
+<h4>Radio groups</h4>
+
+<div>当使用按钮组 &lt;mat-radio-group&gt; 时，所有的按钮都必须写在它里面。</div>
+<p>1：mat-radio-group 具有一个 value 属性，表示当前所选的值。</p>
+<p>2：内部的按钮将会继承按钮组的名字 name</p>
+
+<p>&lt;mat-radio-group&gt; 支持 @angular/form 中的 FormsModule 和 ReactiveFormModule.</p>

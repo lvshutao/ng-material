@@ -13,21 +13,23 @@
 </form>
 <h4>视频教程</h4>
 
-<form class="login-form" novalidate>
+<form class="login-form" novalidate [formGroup]="form" (ngSubmit)="onSubmit(form,$event)">
   <mat-card>
     <mat-card-header></mat-card-header>
     <mat-card-content>
       <mat-form-field class="full-width">
-        <input type="text" matInput placeholder="帐号" required>
+        <input type="email" matInput placeholder="帐号" required formControlName="email">
+        <mat-error>{{ form.controls['email'].errors | json }}</mat-error>
       </mat-form-field>
       <mat-form-field class="full-width">
-        <input type="password" matInput placeholder="密码" required>
+        <input type="password" matInput placeholder="密码" required formControlName="password">
       </mat-form-field>
-      <button type="button" mat-raised-button>登录</button>
+      <!-- [disabled]="!form.valid" -->
+      <button type="submit" mat-raised-button >登录</button>
     </mat-card-content>
     <mat-card-actions align="start" class="text-right">
       <p>还没有帐户?
-        <a href="javascript:;">注册</a>
+        <a routerLink="/ui-grid-list">注册</a>
       </p>
       <p>忘记密码?
         <a href="javascript:;">找回密码</a>

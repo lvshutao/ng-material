@@ -1,0 +1,28 @@
+<div>
+  <span>{{ title }}</span>
+  <!-- 当前选择 -->
+  <mat-icon class="avatar" [svgIcon]="selected" *ngIf="useSvgIcon else imgSelected"></mat-icon>
+  <ng-template #imgSelected>
+    <img class="cover" [src]="selected">
+  </ng-template>
+</div>
+<!--  支持滚动  -->
+<div class="scroll-container">
+  <mat-grid-list [cols]="cols" [rowHeight]="rowHeight">
+    <mat-grid-tile *ngFor="let item of items;let i = index">
+      <!-- 在鼠标滑过的时候有动画提示 -->
+      <div class="image-container" (click)="onChange(i)">
+        <mat-icon class="avatar" [svgIcon]="item" *ngIf="useSvgIcon else imgItem"></mat-icon>
+        <ng-template #imgItem>
+          <img [src]="item" [ngStyle]="{'width':itemWidth}">
+        </ng-template>
+
+        <div class="after">
+          <span class="zoom">
+            <mat-icon>checked</mat-icon>
+          </span>
+        </div>
+      </div>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>

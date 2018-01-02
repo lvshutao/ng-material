@@ -1,0 +1,117 @@
+<h3>Select</h3>
+
+<div>&lt;mat-select&gt; 是一个表单控件，它可以从一组选项中选择一个值，如同原生的 select.
+  它需要包裹在 &lt;mat-form-field&gt; 组件下才能工作
+</div>
+
+<p>使用 &lt;mat-option&gt; 来往 &lt;mat-select&gt; 组件下添加可选项。每一个 mat-option 都具有一个 value 属性，
+  用于设置用户选中时的值， mat-option 的内容即是向用户显示的内容。
+</p>
+
+<mat-form-field>
+  <mat-select placeholder="你最喜欢的水果" [(value)]="selected">
+    <mat-option *ngFor="let food of foods" [value]="food.value">
+      {{food.text}}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
+
+<h4>读取 和 设置列表的值</h4>
+<div>&lt;mat-select&gt; 支持通过双向绑定以读取或设置值，如 [(value)]="selected"</div>
+<p>比如上面的值: {{ selected }} </p>
+<div>除此之外，mat-select 也支持 模板表单 FormsModule 和 响应式表单 ReactiveFormsModule(ngModel, formControl,等).
+</div>
+<p>还可以自定义 [compareWith] 方法(判断是否为同一个对象，默认是比较 value)，来决定如何显示内部的选项;(不懂)</p>
+<mat-form-field>
+  <mat-select placeholder="你最喜欢的学生" [(value)]="selected" [compareWith]="studentCompareFn">
+    <mat-option *ngFor="let student of students" [value]="student.num">
+      {{student.name}}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
+
+<h4>Form field features</h4>
+<div>包裹着 mat-select 的 mat-form-field 组件中，有很多特性 (如 required )也能够被使用。
+  包括 错误信息，提示文本 hint text, 前缀 prefix 和 后缀 prefix，以及主题。
+</div>
+<mat-form-field>
+  <mat-select placeholder="Favorite animal" [formControl]="animalControl" required>
+    <mat-option>--</mat-option>
+    <mat-option *ngFor="let animal of animals" [value]="animal">
+      {{animal.name}}
+    </mat-option>
+  </mat-select>
+  <mat-error *ngIf="animalControl.hasError('required')">请选择一只动物?</mat-error>
+  <mat-hint>{{animalControl.value?.sound}}</mat-hint>
+</mat-form-field>
+
+<h4>placeholder</h4>
+<div>默认情况下，当选项没有值时，placeholder 会自动显示，并在用户操作时，自动缩放到左上方。</div>
+
+<div>Disabled</div>
+<div>你可以轻易地禁用整个 mat-select 或单个 mat-option 的可选状态;
+  <p>disableSelect = new FormControl(false);</p>
+</div>
+<p>
+  <mat-checkbox [formControl]="disableSelect">禁用整个列表</mat-checkbox>
+</p>
+<p>
+  <mat-form-field>
+    <mat-select placeholder="请选择" [disabled]="disableSelect.value">
+      <mat-option value="option1">Option 1</mat-option>
+      <mat-option value="option2" disabled>Option 2 (disabled)</mat-option>
+      <mat-option value="option3">Option 3</mat-option>
+    </mat-select>
+  </mat-form-field>
+</p>
+
+<h4>选项组</h4>
+<div>通过 &lt;mat-optgroup&gt; 你可以设置选项组，其中的 label 属性可用于设置组名。类似的，你可以通过 disabled 属性，
+轻易地设置选项 及选项组是否可选</div>
+<mat-form-field>
+  <mat-select placeholder="Pokemon" [formControl]="pokemonControl">
+    <mat-option>-- None --</mat-option>
+    <mat-optgroup *ngFor="let group of pokemonGroups" [label]="group.name"
+                  [disabled]="group.disabled">
+      <mat-option *ngFor="let pokemon of group.pokemon" [value]="pokemon.value">
+        {{ pokemon.viewValue }}
+      </mat-option>
+    </mat-optgroup>
+  </mat-select>
+</mat-form-field>
+
+<h4>多选</h4>
+<div>只需要为 mat-select 添加 multiple 属性，就可以实现多选的功能</div>
+<mat-form-field>
+  <mat-select placeholder="Pokemon" [formControl]="pokemonControl" multiple>
+    <mat-option>-- None --</mat-option>
+    <mat-optgroup *ngFor="let group of pokemonGroups" [label]="group.name"
+                  [disabled]="group.disabled">
+      <mat-option *ngFor="let pokemon of group.pokemon" [value]="pokemon.value">
+        {{ pokemon.viewValue }}
+      </mat-option>
+    </mat-optgroup>
+  </mat-select>
+</mat-form-field>
+
+<h4>样式(没有成功)</h4>
+<div>mat-select 有一个 panelClass 的属性，允许你为其选项添加样式。你需要提交定义好 css 才行</div>
+<mat-form-field>
+  <mat-select placeholder="Panel color" [formControl]="panelColor"
+              panelClass="example-panel-{{panelColor.value}}">
+    <mat-option value="red">Red</mat-option>
+    <mat-option value="green">Green</mat-option>
+    <mat-option value="blue">Blue</mat-option>
+  </mat-select>
+</mat-form-field>
+
+<h4>修改错误信息的显示</h4>
+<div>
+  你可以通过 mat-form-field 来关联 mat-select 的错误信息。
+  默认情况下，错误信息将在：1. 控件不合法；2. 用户与控件产生交互行为（如点击）；3. 父表单被提交 时触发验证。
+  如果你想要覆盖这种行为（比如：只要控件被不合法的修改，或者在父表单组不合法），你可以在通过修改 mat-select 的
+  `errorStateMatcher` 属性。这个属性将会产生一个 `ErrorStateMatcher` 对象。此对象必须实现 FormControl 的 `isErrorState` 方法。
+  `mat-select` 将通过一个布尔标识来决定是否显示错误信息(true 表示显示，false 表示隐藏).
+  <p>具体的示例查看官方文档吧</p>
+</div>
+

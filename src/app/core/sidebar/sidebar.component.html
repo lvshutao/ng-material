@@ -1,16 +1,8 @@
-<mat-nav-list *ngFor="let menu of menus">
-  <h3 matSubheader>{{menu.subheader}}</h3>
-  <a mat-list-item *ngFor="let item of menu.items" routerLink="{{item.link}}">
-    {{item.title}}
-  </a>
-  <mat-divider></mat-divider>
-</mat-nav-list>
-
 <mat-nav-list dense>
   <h3 matSubheader>项目</h3>
-  <mat-list-item>
+  <mat-list-item routerLink="v-project">
     <mat-icon matListIcon svgIcon="projects"></mat-icon>
-    <a matLine routerLink="v-project">项目首页</a>
+    <a matLine>项目首页</a>
     <p matLine>查看你所有项目</p>
   </mat-list-item>
   <h3 matSubheader>日历</h3>
@@ -30,3 +22,12 @@
     <p matLine>按月查看您的任务</p>
   </mat-list-item>
 </mat-nav-list>
+
+<mat-nav-list *ngFor="let menu of menus">
+  <h3 matSubheader>{{menu.subheader}}</h3>
+  <a mat-list-item *ngFor="let item of menu.items" routerLink="{{item.link}}">
+    {{item.title}}
+  </a>
+  <mat-divider></mat-divider>
+</mat-nav-list>
+

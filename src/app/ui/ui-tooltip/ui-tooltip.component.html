@@ -1,0 +1,36 @@
+<h3>Tooltip</h3>
+
+<div>
+  在用户鼠标滑过或者长按组件时，显示提示信息，使用的指令是 `matTooltip`
+</div>
+
+<div>
+  <span matTooltip="It's a tooltip">I have a tooltip</span>
+</div>
+
+<p>你可以通过 `matTooltipPosition` 来设置 tooltip 的位置:[above|below|left|right|before|after]</p>
+
+<div class="tooltip">
+  <span matTooltip="above" matTooltipPosition="above">above</span>
+  <span matTooltip="below" matTooltipPosition="below">below</span>
+  <span matTooltip="left" matTooltipPosition="left">left</span>
+  <span matTooltip="right" matTooltipPosition="right">right</span>
+  <span matTooltip="before" matTooltipPosition="before">before</span>
+  <span matTooltip="after" matTooltipPosition="after">after</span>
+</div>
+
+<h4>显示与隐藏</h4>
+<div>在 Web 端：默认情况下，当鼠标滑过时，tooltip 会立即显示，鼠标离开后，立即隐藏；
+  你可以通过 `matTooltipShowDelay` 和 `matTooltipHideDelay` 来修改这个时间。
+  如果要修改全局的时间，可以通过 MAT_TOOLTIP_DEFAULT_OPTIONS 注入来修改
+</div>
+
+<div class="tooltip" style="margin: 3em;">
+  <span matTooltip="It's a tooltip" matTooltipShowDelay="2000">matTooltipShowDelay = 2000</span>
+  <span matTooltip="It's a tooltip" matTooltipHideDelay="2000">matTooltipHideDelay = 2000</span>
+</div>
+
+<div>在 Mobile 端: tooltip 会在用户长按屏幕 1500ms 后才出现，长按行为需要 HammerJS 的支持。</div>
+<div>可以通过 `show` 和 `hide` 方法来手动控制是否显示和支持，类似于 jQuery 中的 show 和 hide；
+  如果需要永久地关闭它，可以使用  `matTooltipDisabled`
+</div>

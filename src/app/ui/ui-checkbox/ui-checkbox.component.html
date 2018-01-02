@@ -1,0 +1,23 @@
+<h4>Checkbox</h4>
+
+<div>
+  &lt;mat-checkbox&gt; 与原生的 &lt;input type="checkbox"&gt; 一样的功能。
+  使用非常简单，比如 &lt;mat-checkbox&gt;Check me!&lt;/mat-checkbox&gt;
+</div>
+<div>
+  <mat-checkbox>点我!</mat-checkbox>
+</div>
+
+<h5>Checkbox label</h5>
+<div>
+  mat-checkbox 的内容即是标签，你可以通过为 mat-checkbox 添加 `labelPosition`="after|before" 来控制它的位置。，如果你想不要标签，可以设置 `aria-lable` 属性。
+</div>
+<div>
+  mat-checkbox 与 @angular/forms 组合，它支持 FormsModule 和 ReactiveFormsModule.
+</div>
+
+<h5>Indeterminate state</h5>
+<div>与原生一样，你可以通过添加 [checked]=boolean 来设置它是否处于选中的状态。</div>
+
+<div>你可以添加 (click) = "$event.stopPropagation()" 来阻止它继续向外冒泡。
+</div>

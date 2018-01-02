@@ -1,0 +1,26 @@
+<mat-list-item class="container" [ngClass]="{
+'priority-normal': item.priority === 3,
+'priority-important': item.priority === 2,
+'priority-emergency': item.priority === 1
+}" 
+[appDrag]="true"
+[dragTag]="'task-item'"
+[dragData]="item"
+[draggedclass]="'drag-start'"
+(click)="onItemClick()"
+[@item]="widthPriority"
+>
+  <mat-checkbox class="completed-status" [checked]="item.completed"
+  (click)="onCheckBox($event)"
+  ></mat-checkbox>
+  <div matLine class="content" [ngClass]="{'completed':item.completed}">
+    <span [matTooltip]="item.desc">{{item.desc}}</span>
+  </div>
+  <div matLine class="bottom-bar">
+    <span class="due-date" *ngIf="item.dueDate">
+      {{item.dueDate | date:'yy-mm-dd'}}
+    </span>
+    <mat-icon *ngIf="item.remider">alarm</mat-icon>
+  </div>
+  <mat-icon [svgIcon]="avatar" matListAvatar class="avatar"></mat-icon>
+</mat-list-item>

@@ -1,7 +1,10 @@
-<div style="display: flex;">
-  <app-project-item
+<div class="container" [@listAnim]="projects.length">
+  <app-project-item routerLink="/v-task"
     *ngFor="let project of projects"
     [item]="project"
+    (editClick)="whenEditClick()"
+    (inviteClick)="whenInviteClick()"
+    (deleteClick)="whenDeleteClick(project)"
     class="card">
   </app-project-item>
 </div>

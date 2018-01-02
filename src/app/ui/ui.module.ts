@@ -13,6 +13,12 @@ import { UiGridListComponent } from './ui-grid-list/ui-grid-list.component';
 import { UiDialogComponent } from './ui-dialog/index/ui-dialog.component';
 import { UiDialogDemoComponent } from './ui-dialog/demo/ui-dialog-demo.component';
 import { UiDialogConfirmComponent } from './ui-dialog/confirm/ui-dialog-confirm.component';
+import { UiMenuComponent } from './ui-menu/ui-menu.component';
+import { UiTooltipComponent } from './ui-tooltip/ui-tooltip.component';
+import { UiDatepickerComponent } from './ui-datepicker/ui-datepicker.component';
+import { UiRadioButtonComponent } from './ui-radio-button/ui-radio-button.component';
+import { UiSelectComponent } from './ui-select/ui-select.component';
+import { UiCheckboxComponent } from './ui-checkbox/ui-checkbox.component';
 
 
 @NgModule({
@@ -29,11 +35,19 @@ import { UiDialogConfirmComponent } from './ui-dialog/confirm/ui-dialog-confirm.
     UiButtonComponent,
     UiListComponent,
     UiGridListComponent,
-    // dialog 组件
+    // dialog components
     UiDialogComponent,
     UiDialogDemoComponent,
-    UiDialogConfirmComponent
+    UiDialogConfirmComponent,
+    // -------------------
+    UiMenuComponent,
+    UiTooltipComponent,
+    UiDatepickerComponent,
+    UiRadioButtonComponent,
+    UiSelectComponent,
+    UiCheckboxComponent
   ],
+  // dialog component must set entryComponents
   entryComponents: [UiDialogConfirmComponent],
   providers: []
 })

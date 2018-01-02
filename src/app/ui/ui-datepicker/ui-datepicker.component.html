@@ -1,0 +1,224 @@
+<h3>Datepicker</h3>
+
+<div>
+  datepicker 是由多个 components 和 directives 一起组合工作的，它允许用户在通过选择，在控件输入一个日期.
+  datepicker 必须提供一个数据格式
+<pre>
+@NgModule({{'{'}}
+  imports: [MatDatepickerModule, MatNativeDateModule],
+{{'}'}})
+</pre>
+</div>
+
+<div>
+  <mat-form-field>
+    <input matInput [matDatepicker]="picker" placeholder="选择一个日期">
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker-toggle matPrefix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+</div>
+
+<h4>datepicker + input</h4>
+<div>通过 input[matDatepicker] 属性实现连接，通过 mat-datepicker-toggle 添加辅助日历</div>
+<div><h4>错误</h4>
+  <div>
+    将 matDatepicker 写成了 matDatePicker 导入一写无法识别 input
+  </div>
+</div>
+<div>
+<pre>
+&lt;mat-form-field&gt;
+  &lt;input [matDatepicker]="myDatepicker"&gt;
+  &lt;mat-datepicker-toggle [for]="myDatepicker"&gt;&lt;/mat-datepicker-toggle&gt;
+  &lt;mat-datepicker #myDatepicker&gt;&lt;/mat-datepicker&gt;
+&lt;/mat-form-field&gt;
+</pre>
+  <div>可以通过 mat-datepicker-toggle[matSuffix] 或 matPrefix 控制日历控件的位置</div>
+</div>
+
+<h4>设置日历的开始视图</h4>
+<div>默认情况下，日历打开时是月份视图，但你可以通过设置 mat-datepicker[startView=year] 来修改。
+  在年份视图下，用户会看到所有的月份，在选择某个月份之后，就会看到视图。
+</div>
+<div>
+  <mat-form-field>
+    <input matInput [matDatepicker]="pickerYear" placeholder="选择一个日期">
+    <mat-datepicker-toggle matSuffix [for]="pickerYear"></mat-datepicker-toggle>
+    <mat-datepicker #pickerYear startView="year" [startAt]="startDate"></mat-datepicker>
+  </mat-form-field>
+</div>
+
+<h4>设置选择日期</h4>
+<div>
+  datepicker 的值是由 DateAdapter 注入器的类型决定的。 `NativeDateAdapter` 直接使用 js 原生的 Date 对象。
+  当使用 MomentDateAdapter 时，所有的值将会是 Moment.js 的实现，它使用适配器模式，允许 datepicker 组件使用任何
+  具有自定义 DateAdapter 的日期。
+</div>
+<div>
+  根据所使用的 DateAdapter ，日期选择器也可以反序列化某些日期格式。
+  比如，NativeDateAdapter 和 MomentDateAdapter 都允许将 ISO 8601 字符串传递给 datepicker 并自动转换为正确的对象类型。
+  在将数据直接从后端绑定到日期选择器时很方便。
+  但是，日期选择器将不接受用户格式(由浏览器区域决定)的日期，如 /1/2/2017
+</div>
+<div>和其它 input 类型一样， datepicker 也可以处理 `@angular/forms` 指令，比如 `formGroup`, `formControl`,`ngModel` 等</div>
+
+<div>
+  <mat-form-field>
+    <input matInput placeholder="js Date"
+           [matDatepicker]="picker1"
+           [formControl]="date"
+    />
+    <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+    <mat-datepicker #picker1></mat-datepicker>
+  </mat-form-field>
+
+  <mat-input-container>
+    <input matInput
+           [matDatepicker]="picker2"
+           placeholder="序列化 Date"
+           [formControl]="serializedDate"
+    >
+    <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+  </mat-input-container>
+  <mat-datepicker #picker2></mat-datepicker>
+
+  <mat-input-container>
+    <input matInput [value]="date.value"
+           [matDatepicker]="picker3"
+           placeholder="值绑定">
+    <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
+  </mat-input-container>
+  <mat-datepicker #picker3></mat-datepicker>
+</div>
+
+<h4>日期验证</h4>
+<div>
+  有三个属性用于为 datepicker 添加日期验证。最简单的两个是 min 和 max。
+  除了强制对输入进行验证之外，它们还会禁用日历上不符合的所有日期，并且，用户无法翻阅无效日期之前或之后的日历。
+</div>
+<div>
+  <mat-input-container>
+    <input matInput
+           [matDatepicker]="dateMinMax"
+           placeholder="{{minDate | date:'yyMMdd'}} ~ {{maxDate | date:'yyMMdd'}}"
+           [min]="minDate" [max]="maxDate">
+    <mat-datepicker-toggle matSuffix [for]="dateMinMax"></mat-datepicker-toggle>
+  </mat-input-container>
+  <mat-datepicker #dateMinMax></mat-datepicker>
+</div>
+<div>
+  另外一种添加日期验证的方式，就是使用 `matDatepickerFilter` 属性。
+  这个属性接受一个函数 `&lt;D&gt; => boolean`(D 是 datepicker 所使用的日期类型)。
+  如果结果为 true, 则表示该日期有效，而 false 则表示日期无效。经常用于更精确的日期验证，
+  同样，它也会禁用日历上所有无效的日期，与 min 和 max 不同的是，它不会阻止用户将日历翻到无效的日期之前或之后。
+</div>
+<div>
+  <mat-form-field>
+    <input matInput [matDatepickerFilter]="myFilter" [matDatepicker]="pickerMyFilter" placeholder="禁用周末">
+    <mat-datepicker-toggle matSuffix [for]="pickerMyFilter"></mat-datepicker-toggle>
+    <mat-datepicker #pickerMyFilter></mat-datepicker>
+  </mat-form-field>
+</div>
+<div>每种验证方式都有属于自己的错误检查方式: min:matDatepickerMin, max:matDatepickerMax, matDatepickerFilter:matDatepickerFilter</div>
+
+<h4>输入控件和改变事件</h4>
+<div>
+  输入控件的 原生输入 和 更改事件 只会在用户与 input 发生交互行为时才会触发；
+  在弹出日历对话框中选择日期并不会触发改变事伯，因此，datepicker 输入控件也支持 dateInput 和 dateChange 事件。
+  这些事件会在用户与输入或弹出窗口交互时触发。
+</div>
+<div> 当用户输入新的日期，或者从对话框中选择日期时，dateInput 事件将会触发。
+  而 dateChange 将在用户完成输入或日期选择时触发。
+</div>
+<div>
+  <mat-form-field>
+    <input matInput [matDatepicker]="pickerEvent"
+           placeholder="input & change Event"
+           (dateInput)="addEvent('input',$event)"
+           (dateChange)="addEvent('change',$event)"
+    >
+    <mat-datepicker-toggle matSuffix [for]="pickerEvent"></mat-datepicker-toggle>
+    <mat-datepicker #pickerEvent></mat-datepicker>
+  </mat-form-field>
+  <div style="border: 1px solid red;padding: 1em;">
+    <div *ngFor="let e of events">{{ e }}</div>
+  </div>
+</div>
+
+<h4>禁用部门功能</h4>
+<div>
+  你可以通过添加 `disabled` 属性来禁用 datepicker 输入组件。
+  默认情况下，&lt;mat-datepicker&gt; 和 &lt;mat-datepicker-toggle&lt; 将会自动继承 input 的状态，
+  但你可以单独为 mat-datepicker 和 mat-datepicker-toggle 设置 disabled="false" 解除。
+</div>
+<div>
+  <p>
+    <mat-form-field>
+      <input matInput [matDatepicker]="dp1" placeholder="完全禁用" disabled>
+      <mat-datepicker-toggle matSuffix [for]="dp1"></mat-datepicker-toggle>
+      <mat-datepicker #dp1></mat-datepicker>
+    </mat-form-field>
+  </p>
+
+  <p>
+    <mat-form-field>
+      <input matInput [matDatepicker]="dp2" placeholder="禁用弹出">
+      <mat-datepicker-toggle matSuffix [for]="dp2" disabled></mat-datepicker-toggle>
+      <mat-datepicker #dp2></mat-datepicker>
+    </mat-form-field>
+  </p>
+
+  <p>
+    <mat-form-field>
+      <input matInput [matDatepicker]="dp3" placeholder="禁用输入" disabled>
+      <mat-datepicker-toggle matSuffix [for]="dp3"></mat-datepicker-toggle>
+      <mat-datepicker #dp3 disabled="false"></mat-datepicker>
+    </mat-form-field>
+  </p>
+</div>
+
+<h4>触摸屏</h4>
+<div>
+  在输入组件下面弹出日期对话框的方式，并不适合触摸屏，因为没有足够的屏幕空间。
+  因此 &lt;mat-datepicker&gt; 新增了 touchUi=true，用于更友好的大对框 UI。
+</div>
+<div>
+  <mat-form-field>
+    <input matInput [matDatepicker]="pickerUi" placeholder="touchUi=true 大屏">
+    <mat-datepicker-toggle matSuffix [for]="pickerUi"></mat-datepicker-toggle>
+    <mat-datepicker touchUi="true" #pickerUi></mat-datepicker>
+  </mat-form-field>
+</div>
+
+<h4>打开、关闭事件</h4>
+<div>日历对话框，能够通过 open/close 方法进行控制</div>
+<mat-form-field>
+  <input matInput [matDatepicker]="pickerMethod" placeholder="日期方法">
+  <mat-datepicker #pickerMethod></mat-datepicker>
+</mat-form-field>
+<button mat-raised-button (click)="pickerMethod.open()">打开日历对话框</button>
+
+<h4>初始化</h4>
+<div>
+  日历可以通过以下配置进行初始化
+  <ol>
+    <li>
+      <h5>日期区域 date locale</h5>
+<pre>@NgModule({{'{'}}
+  providers:[
+    {{'{'}}provider:MAT_DATE_LOCALE, useValue:'zh-CN'{{'}'}}
+  ]
+{{'}'}})</pre>
+    </li>
+    <li>datepicker accepts</li>
+    <li>
+      <h5>datepicker 的显示和格式化</h5>
+      <div>MAT_DATE_FORMATS 对象只是日期选择器在解析和显示日期时使用的一组格式。
+        这些格式被传递给 DataAdapter，因此如果你需要使用自己的格式，则必须确保它们之间是兼容的。
+      </div>
+      <div>如果你想要使用 Angular Material 自带的 DataAdapters，但使用自己的显示格式，你可以导入 NativeDateModule。具体细节查看文档</div>
+    </li>
+    <li>datepicker UI 上的字符串信息</li>
+  </ol>
+</div>

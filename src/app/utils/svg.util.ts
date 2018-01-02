@@ -1,7 +1,7 @@
 // 支持 Svg
 // 同时解决资源分散的问题
-import { MatIconRegistry } from '@angular/material';
-import { DomSanitizer } from '@angular/platform-browser';
+import {MatIconRegistry} from '@angular/material';
+import {DomSanitizer} from '@angular/platform-browser';
 
 export const svgResources = (ir: MatIconRegistry, ds: DomSanitizer) => {
   ir.addSvgIcon('cart', ds.bypassSecurityTrustResourceUrl('assets/cart.svg'));
@@ -19,5 +19,11 @@ export const svgResources = (ir: MatIconRegistry, ds: DomSanitizer) => {
   }
   // 图像，导入的是 svg 集合文件
   const avatarDir = `${imgDir}avatar/`;
-  ir.addSvgIconSetInNamespace('avatars', ds.bypassSecurityTrustResourceUrl(`${avatarDir}avatars.svg`))
+  ir.addSvgIconSetInNamespace('avatars', ds.bypassSecurityTrustResourceUrl(`${avatarDir}avatars.svg`));
+  ir.addSvgIcon('unassigned', ds.bypassSecurityTrustResourceUrl(`${avatarDir}unassigned.svg`));
+  // icons
+  const iconsDir = `${imgDir}icons/`;
+  ['add', 'burger-navigation', 'delete', 'hand-grab-o', 'move'].forEach(name => {
+    ir.addSvgIcon(name, ds.bypassSecurityTrustResourceUrl(`${iconsDir}${name}.svg`));
+  });
 };

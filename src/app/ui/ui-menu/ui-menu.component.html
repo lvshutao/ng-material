@@ -1,0 +1,85 @@
+<h4>menu</h4>
+
+<div>&lt;mat-menu&gt; 是一个包含了选项的浮动面板，它本身并不渲染任何东西，而且由 matMenuTriggerFor 指令来触发</div>
+
+
+  <button mat-button [matMenuTriggerFor]="appMenu" >
+    <mat-icon class="mat-18">menu</mat-icon>
+  </button>
+  <button mat-button (click)="openMenu()" style="margin-left: 150px;">
+    手动打开菜单
+  </button>
+<div>
+  <mat-menu #appMenu="matMenu"  [overlapTrigger]="false">
+    <button mat-menu-item>
+      <mat-icon> dialpad</mat-icon>
+      <span> Redial </span>
+    </button>
+    <button mat-menu-item disabled>
+      <mat-icon> voicemail</mat-icon>
+      <span> Check voicemail </span>
+    </button>
+    <button mat-menu-item>
+      <mat-icon> notifications_off</mat-icon>
+      <span> Disable alerts </span>
+    </button>
+  </mat-menu>
+</div>
+
+<div>
+  如果想要显示图标，则需要在文本前面使用 &lt;mat-icon&gt;
+</div>
+<div>
+  默认情况下，菜单弹出的位置会以它的触发者的左上角(position:relative;top:0;left:0;)为座标。
+  <p>如果你想改变它的位置，则可以在 mat-menu 中添加 xPosition:before|after 和 yPosition:above|below 属性</p>
+  <p>如果你不想它覆盖菜单触发者，则可以设置 [overlapTrigger]="false"</p>
+</div>
+
+<h4>多级菜单</h4>
+<button mat-button [matMenuTriggerFor]="animals">Animal index</button>
+
+<mat-menu #animals="matMenu">
+  <button mat-menu-item [matMenuTriggerFor]="vertebrates">Vertebrates</button>
+  <button mat-menu-item [matMenuTriggerFor]="invertebrates">Invertebrates</button>
+</mat-menu>
+
+<mat-menu #vertebrates="matMenu">
+  <button mat-menu-item [matMenuTriggerFor]="fish">Fishes</button>
+  <button mat-menu-item [matMenuTriggerFor]="amphibians">Amphibians</button>
+  <button mat-menu-item [matMenuTriggerFor]="reptiles">Reptiles</button>
+  <button mat-menu-item>Birds</button>
+  <button mat-menu-item>Mammals</button>
+</mat-menu>
+
+<mat-menu #invertebrates="matMenu">
+  <button mat-menu-item>Insects</button>
+  <button mat-menu-item>Molluscs</button>
+  <button mat-menu-item>Crustaceans</button>
+  <button mat-menu-item>Corals</button>
+  <button mat-menu-item>Arachnids</button>
+  <button mat-menu-item>Velvet worms</button>
+  <button mat-menu-item>Horseshoe crabs</button>
+</mat-menu>
+
+<mat-menu #fish="matMenu">
+  <button mat-menu-item>Baikal oilfish</button>
+  <button mat-menu-item>Bala shark</button>
+  <button mat-menu-item>Ballan wrasse</button>
+  <button mat-menu-item>Bamboo shark</button>
+  <button mat-menu-item>Banded killifish</button>
+</mat-menu>
+
+<mat-menu #amphibians="matMenu">
+  <button mat-menu-item>Sonoran desert toad</button>
+  <button mat-menu-item>Western toad</button>
+  <button mat-menu-item>Arroyo toad</button>
+  <button mat-menu-item>Yosemite toad</button>
+</mat-menu>
+
+<mat-menu #reptiles="matMenu">
+  <button mat-menu-item>Banded Day Gecko</button>
+  <button mat-menu-item>Banded Gila Monster</button>
+  <button mat-menu-item>Black Tree Monitor</button>
+  <button mat-menu-item>Blue Spiny Lizard</button>
+  <button mat-menu-item disabled>Velociraptor</button>
+</mat-menu>
